@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elite Core — Age &amp; Tenure Snapshot · Apr 1 → Jul 1 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,600;1,700&family=Barlow+Condensed:ital,wght@0,600;0,700;1,700;1,800&family=Barlow+Semi+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Elite Core Brand Guide (March 2026) */
+  --gray:#262829;        /* dark gray base — never true black */
+  --gray-2:#2E3132;
+  --gray-3:#373B3C;
+  --hair:#41464a;
+  --yellow:#F9D342;      /* primary accent */
+  --yellow-lt:#FEE7A4;
+  --teal:#1199AB;        /* secondary accent */
+  --teal-lt:#4fc0cf;
+  --white:#FFFFFF;
+  --mute:#AEB4B6;
+  --faint:#7C8385;
+  /* tenure ramp teal->yellow */
+  --r1:#1199AB; --r2:#3fae9e; --r3:#9db38a; --r4:#e0cf68; --r5:#F9D342;
+  --disp:'Barlow Condensed',sans-serif;
+  --body:'Barlow',sans-serif;
+  --semi:'Barlow Semi Condensed',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--gray);color:var(--white);font-family:var(--body);line-height:1.55;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:1000px;margin:0 auto;padding:0 24px}
+.rule{height:3px;background:linear-gradient(90deg,var(--teal),var(--yellow));border:none;border-radius:2px}
+
+/* top bar */
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:22px 0 20px;gap:16px;flex-wrap:wrap}
+.topbar img{height:34px;width:auto}
+.topbar .doc{font-family:var(--semi);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute)}
+
+section{padding:58px 0}
+section+section{border-top:1px solid var(--hair)}
+
+/* skewed italic badge — brand signature */
+.badge{display:inline-block;background:var(--yellow);color:var(--gray);font-family:var(--disp);
+  font-weight:700;font-style:italic;font-size:13px;letter-spacing:.06em;text-transform:uppercase;
+  padding:5px 14px 4px;transform:skewX(-9deg);margin-bottom:20px}
+.badge span{display:inline-block;transform:skewX(9deg)}
+.badge.teal{background:var(--teal);color:var(--white)}
+
+h2{font-family:var(--disp);font-weight:700;font-size:clamp(30px,4.6vw,46px);letter-spacing:.005em;line-height:1;text-transform:uppercase}
+h2 em{font-style:normal;color:var(--yellow)}
+h2 em.teal{color:var(--teal)}
+.lead{color:var(--mute);max-width:64ch;margin-top:16px;font-size:16.5px}
+.lead i{color:var(--yellow-lt);font-style:italic}
+
+/* HERO */
+.hero{padding:26px 0 56px}
+.hero h1{font-family:var(--disp);font-weight:800;font-size:clamp(42px,8vw,86px);line-height:.92;
+  letter-spacing:.005em;text-transform:uppercase;margin:8px 0 22px;max-width:16ch}
+.hero h1 .y{color:var(--yellow)} .hero h1 .t{color:var(--teal)}
+.hero .thesis{font-size:clamp(17px,2vw,21px);color:var(--mute);max-width:60ch;line-height:1.5}
+.hero .thesis b{color:var(--white);font-weight:600}
+.hcount{font-family:var(--semi);font-size:13px;color:var(--mute);margin-top:22px;letter-spacing:.06em;text-transform:uppercase}
+.hcount b{color:var(--white)}
+.hcount .cut{color:var(--yellow)}
+
+.movers{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:42px}
+.mover{background:var(--gray-2);border:1px solid var(--hair);border-radius:4px;padding:24px;position:relative;overflow:hidden}
+.mover::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px}
+.mover.age::before{background:var(--yellow)} .mover.ten::before{background:var(--teal)}
+.mover .k{font-family:var(--semi);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.mover .row{display:flex;align-items:baseline;gap:12px;margin-top:14px}
+.mover .v0{font-family:var(--disp);font-weight:600;font-size:26px;color:var(--faint)}
+.mover .arrow{color:var(--faint);font-family:var(--disp);font-size:22px}
+.mover .v1{font-family:var(--disp);font-weight:800;font-size:58px;letter-spacing:.01em;line-height:.85}
+.mover.age .v1{color:var(--yellow)} .mover.ten .v1{color:var(--teal)}
+.mover .chg{margin-top:14px;font-family:var(--semi);font-size:13.5px;letter-spacing:.04em;text-transform:uppercase}
+.mover.age .chg{color:var(--yellow)} .mover.ten .chg{color:var(--teal-lt)}
+
+/* composition stacked bar */
+.compwrap{margin-top:34px}
+.complab{display:flex;justify-content:space-between;font-family:var(--semi);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-bottom:9px}
+.compbar{display:flex;height:52px;border-radius:4px;overflow:hidden;border:1px solid var(--hair);gap:2px;background:var(--hair)}
+.seg{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0;
+  color:var(--gray);font-family:var(--disp);font-weight:700;transition:flex-grow 1s cubic-bezier(.22,1,.36,1);min-width:0;overflow:hidden;white-space:nowrap}
+.seg .sv{font-size:19px;line-height:1} .seg .sk{font-size:10px;font-family:var(--semi);font-weight:600;opacity:.8;letter-spacing:.04em}
+.complegend{display:flex;gap:20px;margin-top:16px;flex-wrap:wrap;font-family:var(--semi);font-size:12.5px;color:var(--mute);letter-spacing:.03em;text-transform:uppercase}
+.complegend span{display:inline-flex;align-items:center;gap:8px}
+.complegend i{width:12px;height:12px;border-radius:2px;display:inline-block}
+
+/* stat cards */
+.stats{display:grid;gap:14px;margin-top:30px}
+.stats.c3{grid-template-columns:repeat(3,1fr)}
+.stat{background:var(--gray-2);border:1px solid var(--hair);border-radius:4px;padding:20px}
+.stat .k{font-family:var(--semi);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.stat .rr{display:flex;align-items:baseline;gap:9px;margin-top:12px}
+.stat .a{font-family:var(--disp);font-weight:600;font-size:22px;color:var(--faint)}
+.stat .ar{color:var(--faint);font-family:var(--disp)}
+.stat .b{font-family:var(--disp);font-weight:800;font-size:40px;letter-spacing:.01em;line-height:.85}
+.stat .c{margin-top:11px;font-family:var(--semi);font-size:12px;letter-spacing:.03em;text-transform:uppercase;color:var(--mute)}
+.stat.up .b{color:var(--yellow)} .stat.up .c{color:var(--yellow)}
+.stat.dn .c{color:var(--teal-lt)}
+
+/* retention meters */
+.meters{margin-top:32px;display:flex;flex-direction:column;gap:15px}
+.meter{display:grid;grid-template-columns:130px 1fr 92px;align-items:center;gap:14px}
+.meter .band{font-family:var(--semi);font-weight:600;font-size:14px;color:var(--white);text-align:right;letter-spacing:.02em}
+.meter .band small{display:block;font-family:var(--body);color:var(--faint);font-size:11px;font-weight:400;margin-top:1px}
+.bartrack{position:relative;height:28px;background:var(--gray-3);border-radius:3px;overflow:hidden;border:1px solid var(--hair)}
+.barfill{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:2px;transition:width 1.1s cubic-bezier(.22,1,.36,1)}
+.meter .pct{font-family:var(--disp);font-weight:800;font-size:26px;text-align:right;line-height:1}
+.meter .cnt{font-family:var(--semi);font-size:10.5px;color:var(--faint);display:block;text-align:right;margin-top:2px;letter-spacing:.03em;text-transform:uppercase}
+.ageM .barfill{background:linear-gradient(90deg,#b58f1e,var(--yellow))}
+.ageM .pct{color:var(--yellow)}
+.tenM .barfill{background:linear-gradient(90deg,#0c6976,var(--teal))}
+.tenM .pct{color:var(--teal-lt)}
+
+.insight{margin-top:26px;padding:17px 20px;border-radius:0 4px 4px 0;font-size:15.5px;color:#dfe3e4;border-left:3px solid}
+.insight b{color:var(--white)}
+.insight.age{border-left-color:var(--yellow);background:linear-gradient(90deg,rgba(249,211,66,.09),transparent)}
+.insight.ten{border-left-color:var(--teal);background:linear-gradient(90deg,rgba(17,153,171,.11),transparent)}
+.insight.syn{border-left-color:var(--white);background:linear-gradient(90deg,rgba(255,255,255,.06),transparent)}
+
+footer{padding:34px 0 60px}
+.footinner{color:var(--faint);font-family:var(--semi);font-size:12px;line-height:1.85;margin-top:22px}
+.footinner b{color:var(--mute);font-weight:600}
+.footmark{display:flex;align-items:center;gap:14px;margin-top:26px}
+.footmark img{height:26px}
+.footmark span{font-family:var(--semi);font-size:11px;color:var(--faint);letter-spacing:.05em;text-transform:uppercase}
+
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:680px){
+  .movers,.stats.c3{grid-template-columns:1fr}
+  .meter{grid-template-columns:100px 1fr 74px;gap:10px}
+  .meter .pct{font-size:20px}
+  .seg .sk{display:none}
+  section{padding:44px 0}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="topbar">
+  <img src="data:image/webp;base64,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" alt="Elite Core">
+  <span class="doc">Workforce Snapshot · Q2 2026</span>
+</div>
+<hr class="rule">
+
+<header class="hero">
+  <div class="badge" style="margin-top:30px"><span>Age &amp; Tenure · Apr 1 → Jul 1 2026</span></div>
+  <h1>Half the size. <span class="y">Older</span> and more <span class="t">tenured</span>.</h1>
+  <p class="thesis">From <b>April 1</b> to <b>July 1, 2026</b>, the company went from 86 people to 44. Two measures rose as it shrank — the average employee is now both <b>older</b> and has been here <b>longer</b>. Here's the story from both sides, weighted evenly.</p>
+  <div class="hcount">Headcount &nbsp;<b>86</b> → <b>44</b>&nbsp; · &nbsp;<span class="cut">−42 people (−49%)</span></div>
+
+  <div class="movers">
+    <div class="mover age">
+      <span class="k">Average age</span>
+      <div class="row"><span class="v0">35.0</span><span class="arrow">→</span><span class="v1">36.4</span></div>
+      <div class="chg">+1.4 years older</div>
+    </div>
+    <div class="mover ten">
+      <span class="k">Average tenure</span>
+      <div class="row"><span class="v0">3.4</span><span class="arrow">→</span><span class="v1">5.2</span></div>
+      <div class="chg">+1.8 yrs · +52% longer</div>
+    </div>
+  </div>
+</header>
+
+<!-- MOVEMENT I: AGE -->
+<section>
+  <div class="badge"><span>Movement I — Age is climbing</span></div>
+  <h2>The middle thinned. The <em>top thickened</em>.</h2>
+  <p class="lead">Split into three broad bands, the mix barbelled. The <i>31–50</i> core lost the most ground, while the <i>51+</i> band grew its share the most — and held on more tightly than anyone younger.</p>
+
+  <div class="compwrap">
+    <div class="complab"><span>April 1 · 86 people</span></div>
+    <div class="compbar" id="ageApr"></div>
+  </div>
+  <div class="compwrap" style="margin-top:22px">
+    <div class="complab"><span>July 1 · 44 people</span></div>
+    <div class="compbar" id="ageJul"></div>
+  </div>
+  <div class="complegend">
+    <span><i style="background:var(--teal)"></i>30 &amp; under</span>
+    <span><i style="background:#9db38a"></i>31–50</span>
+    <span><i style="background:var(--yellow)"></i>51+</span>
+  </div>
+
+  <div class="stats c3">
+    <div class="stat"><span class="k">30 &amp; under</span>
+      <div class="rr"><span class="a">50.0%</span><span class="ar">→</span><span class="b">52.3%</span></div>
+      <div class="c">+2.3 pt · 43 → 23 people</div></div>
+    <div class="stat dn"><span class="k">31–50</span>
+      <div class="rr"><span class="a">33.7%</span><span class="ar">→</span><span class="b">27.3%</span></div>
+      <div class="c">−6.4 pt · 29 → 12 people</div></div>
+    <div class="stat up"><span class="k">51+</span>
+      <div class="rr"><span class="a">16.3%</span><span class="ar">→</span><span class="b">20.5%</span></div>
+      <div class="c">+4.2 pt · 14 → 9 people</div></div>
+  </div>
+
+  <div class="meters ageM" id="ageMeters"></div>
+
+  <div class="insight age">The oldest band held on hardest: <b>64%</b> of the 51+ group stayed, versus 38% of the 31–50 core. A 51+ employee was <b>1.7× more likely</b> to keep their seat than someone in mid-career.</div>
+</section>
+
+<!-- MOVEMENT II: TENURE -->
+<section>
+  <div class="badge teal"><span>Movement II — Tenure is deepening</span></div>
+  <h2>Newest hires first. <em class="teal">Veterans stayed</em>.</h2>
+  <p class="lead">By years of service, the shape is a clean staircase. The under-one-year band collapsed from 25 people to 6, while everything from five years up came through nearly whole — pulling median tenure from <i>2.7 to 4.8 years</i>.</p>
+
+  <div class="compwrap">
+    <div class="complab"><span>April 1 · 86 people</span></div>
+    <div class="compbar" id="tenApr"></div>
+  </div>
+  <div class="compwrap" style="margin-top:22px">
+    <div class="complab"><span>July 1 · 44 people</span></div>
+    <div class="compbar" id="tenJul"></div>
+  </div>
+  <div class="complegend">
+    <span><i style="background:var(--r1)"></i>&lt;1 yr</span>
+    <span><i style="background:var(--r2)"></i>1–3</span>
+    <span><i style="background:var(--r3)"></i>3–5</span>
+    <span><i style="background:var(--r4)"></i>5–10</span>
+    <span><i style="background:var(--r5)"></i>10+</span>
+  </div>
+
+  <div class="meters tenM" id="tenMeters"></div>
+
+  <div class="insight ten">Retention rises with every step of service — <b>20% → 35% → 67% → 82% → 100%</b>. Every one of the six employees with a decade or more stayed. The median departing employee had just <b>1.4 years</b> in.</div>
+</section>
+
+<!-- SYNTHESIS -->
+<section>
+  <div class="badge" style="background:var(--white);color:var(--gray)"><span>Together — one core, two readings</span></div>
+  <h2>Older and more tenured are the <em>same story</em>.</h2>
+  <p class="lead">These two movements aren't competing — they're the same people seen twice. The long-service employees the transformation kept are also, on the whole, the older ones. Retaining the veterans is what lifted both the tenure line and the age line at once.</p>
+  <div class="insight syn">For planning, the pair points one direction: the company is now built around a <b>smaller, more senior core</b> — real stability and institutional knowledge today, and a succession and knowledge-transfer question to watch as that core ages.</div>
+</section>
+
+<hr class="rule">
+<footer>
+  <div class="footinner">
+    <b>Source</b> — Age &amp; Tenure roster, snapshots dated 4.1.2026 and 07.01.2026. 86 records April · 44 July · matched by name.<br>
+    <b>Age bands</b> — 30 &amp; under (≤30) · 31–50 · 51+. April 43 / 29 / 14 → July 23 / 12 / 9. Retention 53% / 38% / 64%. No employee is aged exactly 50, so the top boundary is unambiguous.<br>
+    <b>Tenure bands</b> — &lt;1 / 1–3 / 3–5 / 5–10 / 10+ yrs. April 25 / 20 / 24 / 11 / 6 → July 6 / 7 / 13 / 12 / 6. Retention 20% / 35% / 67% / 82% / 100%.<br>
+    <b>Note</b> — Retention = share of each April band still present July 1. July includes one new hire (age 38, &lt;1 yr tenure); all others are retained from April.
+  </div>
+  <div class="footmark">
+    <img src="data:image/webp;base64,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" alt="Elite Core">
+    <span>112 S. Broadview St, Greenbrier, AR 72058 · Internal — prepared for leadership</span>
+  </div>
+</footer>
+
+</div>
+<script>
+const ageBands=[
+  {k:'30 & under',apr:43,jul:23,color:'var(--teal)'},
+  {k:'31-50',apr:29,jul:12,color:'#9db38a'},
+  {k:'51+',apr:14,jul:9,color:'var(--yellow)'}
+];
+const tenBands=[
+  {k:'<1',apr:25,jul:6,color:'var(--r1)'},
+  {k:'1-3',apr:20,jul:7,color:'var(--r2)'},
+  {k:'3-5',apr:24,jul:13,color:'var(--r3)'},
+  {k:'5-10',apr:11,jul:12,color:'var(--r4)'},
+  {k:'10+',apr:6,jul:6,color:'var(--r5)'}
+];
+const ageRet=[{band:'30 & under',start:43,kept:23},{band:'31-50',start:29,kept:11},{band:'51+',start:14,kept:9}];
+const tenRet=[{band:'<1 yr',start:25,kept:5},{band:'1-3 yr',start:20,kept:7},{band:'3-5 yr',start:24,kept:16},{band:'5-10 yr',start:11,kept:9},{band:'10+ yr',start:6,kept:6}];
+
+function buildBar(id,bands,key,total){
+  const el=document.getElementById(id);
+  bands.forEach(b=>{
+    const pct=100*b[key]/total;
+    const s=document.createElement('div');s.className='seg';
+    s.style.background=b.color;s.style.flexGrow=b[key];
+    s.innerHTML='<span class="sv">'+pct.toFixed(0)+'%</span><span class="sk">'+b[key]+'</span>';
+    el.appendChild(s);
+  });
+}
+buildBar('ageApr',ageBands,'apr',86); buildBar('ageJul',ageBands,'jul',44);
+buildBar('tenApr',tenBands,'apr',86); buildBar('tenJul',tenBands,'jul',44);
+
+function buildMeters(id,data){
+  const el=document.getElementById(id);
+  data.forEach(d=>{
+    const pct=Math.round(100*d.kept/d.start);
+    const row=document.createElement('div');row.className='meter';
+    row.innerHTML='<div class="band">'+d.band+'<small>'+d.start+' in April</small></div>'+
+      '<div class="bartrack"><div class="barfill" data-w="'+pct+'"></div></div>'+
+      '<div><div class="pct">'+pct+'%</div><span class="cnt">'+d.kept+' of '+d.start+'</span></div>';
+    el.appendChild(row);
+  });
+}
+buildMeters('ageMeters',ageRet); buildMeters('tenMeters',tenRet);
+
+const bio=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){setTimeout(()=>{e.target.style.width=e.target.dataset.w+'%';},120);bio.unobserve(e.target);}});},{threshold:.4});
+document.querySelectorAll('.barfill').forEach(b=>bio.observe(b));
+const rio=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rio.unobserve(e.target);}});},{threshold:.12});
+document.querySelectorAll('section,.hero').forEach(s=>{s.classList.add('reveal');rio.observe(s);});
+</script>
+</body>
+</html>
